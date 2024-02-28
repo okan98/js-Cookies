@@ -1,20 +1,51 @@
-// a cookie with a given name: "..."
+// DOM element
+const buttonAcceptCookie = document.querySelector("#buttonAcceptCookie");
+const sectionCookie = document.querySelector("#cookie");
+
+// event lsiteners
+buttonAcceptCookie.addEventListener ("click", () => {
+    // console.log("hepp");
+
+    sectionCookie.classList.add("hidden");
+
+    // a cookie with a given name: "..."
+    setCookie("cookieConfirmation", "true", 180);
+
+});
+
+// check if cookie "cookieConfirmation" exists 
+if (getCookie("cookieConfirmation")) {
+    console.log("cookie finns...");
+
+    sectionCookie.classList =  "hidden";
+}
 
 
 
+
+
+// functions
+
+/**
+ *
+ *
+ * @param {string} cname
+ * @param {string} cvalue
+ * @param {number} days
+ */
 function setCookie(cname, cvalue, days) {
-    var d = new Date();
+    let d = new Date();
     d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
-    var expires = "expires=" + d.toUTCString();
+    let expires = "expires=" + d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
 function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
         while (c.charAt(0) == ' ') {
             c = c.substring(1);
         }
